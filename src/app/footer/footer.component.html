@@ -1,0 +1,89 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="row gy-4">
+      <!-- Column 1: Logo -->
+      <div class="col-12 col-md-3 d-flex align-items-center justify-content-center justify-content-md-start">
+        <a class="navbar-brand"
+           routerLink="/home"
+           [attr.aria-label]="'home.title' | translate">
+          <img
+            src="assets/images/tholkudi-logo-english.png"
+            class="footer-logo"
+            [attr.alt]="'menu.header.image.logo' | translate" />
+        </a>
+      </div>
+
+      <!-- Column 2: Contact Us -->
+      <div class="col-12 col-md-3">
+        <h5 class="footer-heading">{{ 'footer.heading.contact' | translate }}</h5>
+        <address class="mb-0 small">
+          {{ 'footer.address.line1' | translate }}<br />
+          {{ 'footer.address.line2' | translate }}<br />
+          {{ 'footer.address.line3' | translate }}<br />
+          {{ 'footer.address.phone' | translate }}<br />
+          <a href="mailto:dir.dtw@tn.gov.in"
+             [attr.aria-label]="'footer.address.emailLabel' | translate">
+            {{ 'footer.address.emailLabel' | translate }}
+          </a>
+        </address>
+      </div>
+
+      <!-- Column 3: More Info -->
+      <div class="col-12 col-md-3">
+        <h5 class="footer-heading">{{ 'footer.heading.moreInfo' | translate }}</h5>
+        <ul class="list-unstyled">
+          <li *ngIf="showHelp">
+            <a routerLink="/info/help">{{ 'footer.moreInfo.help' | translate }}</a>
+          </li>
+          <li>
+            <a href="#" (click)="showCookieSettings(); $event.preventDefault()">
+              {{ 'footer.moreInfo.cookieSettings' | translate }}
+            </a>
+          </li>
+          <li *ngIf="showPrivacyPolicy">
+            <a routerLink="/info/privacy">{{ 'footer.moreInfo.privacyPolicy' | translate }}</a>
+          </li>
+          <li *ngIf="showEndUserAgreement">
+            <a routerLink="/info/end-user-agreement">{{ 'footer.moreInfo.endUserAgreement' | translate }}</a>
+          </li>
+          <li *ngIf="showSendFeedback$ | async">
+            <a routerLink="/info/feedback">{{ 'footer.moreInfo.feedback' | translate }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Useful Links -->
+      <div class="col-12 col-md-3">
+        <h5 class="footer-heading">{{ 'footer.heading.usefulLinks' | translate }}</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="https://tribal.nic.in" target="_blank" rel="noopener">
+              {{ 'footer.links.link1' | translate }}
+            </a>
+          </li>
+          <li>
+            <a href="https://www.tntribalwelfare.tn.gov.in/" target="_blank" rel="noopener">
+              {{ 'footer.links.link2' | translate }}
+            </a>
+          </li>
+          <li>
+            <a href="https://tntrc.org.in/" target="_blank" rel="noopener">
+              {{ 'footer.links.link3' | translate }}
+            </a>
+          </li>
+          <li *ngIf="coarLdnEnabled$ | async">
+            <a routerLink="/info/coar-notify-support">
+              {{ 'footer.links.coarNotify' | translate }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Footer -->
+  <div class="bottom-footer text-center py-2 mt-3">
+    <small>{{ 'footer.copyright' | translate }}</small>
+  </div>
+</footer>
+

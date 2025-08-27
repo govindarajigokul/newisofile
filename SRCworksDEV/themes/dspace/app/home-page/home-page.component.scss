@@ -1,0 +1,83 @@
+// DSpace Theme Home Page Styles
+
+:host {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+// Override main container margins globally
+::ng-deep .my-cs {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+// Target specific Angular container classes
+::ng-deep .my-cs.ng-tns-c2190221462-0 {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+// Remove any top spacing from main content area
+::ng-deep main {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+// Hero Banner Section - full width at top
+ds-hero-banner {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+// COAR Component - add top spacing after hero banner
+ds-home-coar {
+  display: block;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+// Main content spacing
+.container {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+// Search form styling
+ds-search-form {
+  display: block;
+  margin-bottom: 2rem;
+  
+  @media (max-width: 767px) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+// Community list styling
+ds-top-level-community-list {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+// Recent items styling
+ds-recent-item-list {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+// Home news styling
+ds-home-news {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+// Responsive adjustments
+@media (max-width: 767px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
