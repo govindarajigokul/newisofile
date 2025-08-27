@@ -19,6 +19,7 @@ import {
 } from '../shared/host-window.service';
 import { ImpersonateNavbarComponent } from '../shared/impersonate-navbar/impersonate-navbar.component';
 import { ThemedLangSwitchComponent } from '../shared/lang-switch/themed-lang-switch.component';
+import { LogoService } from '../shared/logo/logo.service';
 import { MenuService } from '../shared/menu/menu.service';
 import { MenuID } from '../shared/menu/menu-id.model';
 import { ContextHelpToggleComponent } from './context-help-toggle/context-help-toggle.component';
@@ -40,6 +41,7 @@ export class HeaderComponent implements OnInit {
    */
   public isAuthenticated: Observable<boolean>;
   public isMobile$: Observable<boolean>;
+  public currentLogo: {src: string, alt: string};
 
   menuID = MenuID.PUBLIC;
   maxMobileWidth = WidthCategory.SM;
@@ -47,11 +49,20 @@ export class HeaderComponent implements OnInit {
   constructor(
     protected menuService: MenuService,
     protected windowService: HostWindowService,
+    protected logoService: LogoService,
   ) {
   }
 
   ngOnInit(): void {
     this.isMobile$ = this.windowService.isUpTo(this.maxMobileWidth);
+
+    // Initialize current logo
+    this.currentLogo = this.logoService.getCurrentLogoSync();
+
+    // Subscribe to language changes to update logo
+    this.logoService.getCurrentLogo().subscribe(logo => {
+      this.currentLogo = logo;
+    });
   }
 
   public toggleNavbar(): void {

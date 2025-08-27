@@ -4,8 +4,9 @@ import {
   NgIf,
   NgTemplateOutlet,
 } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { HomeCoarComponent } from '../../../../app/home-page/home-coar/home-coar.component';
 import { ThemedHomeNewsComponent } from '../../../../app/home-page/home-news/themed-home-news.component';
@@ -17,16 +18,31 @@ import { ThemedConfigurationSearchPageComponent } from '../../../../app/search-p
 import { ThemedSearchFormComponent } from '../../../../app/shared/search-form/themed-search-form.component';
 import { PageWithSidebarComponent } from '../../../../app/shared/sidebar/page-with-sidebar.component';
 import { ViewTrackerComponent } from '../../../../app/statistics/angulartics/dspace/view-tracker.component';
+import { HeroBannerComponent } from '../../../dspace/app/hero-banner/hero-banner.component';
+import { APP_CONFIG, AppConfig } from '../../../../../src/config/app-config.interface';
 
 @Component({
   selector: 'ds-themed-home-page',
-  // styleUrls: ['./home-page.component.scss'],
-  styleUrls: ['../../../../app/home-page/home-page.component.scss'],
-  // templateUrl: './home-page.component.html'
-  templateUrl: '../../../../app/home-page/home-page.component.html',
+  styleUrls: ['./home-page.component.scss'],
+  templateUrl: './home-page.component.html',
   standalone: true,
-  imports: [ThemedHomeNewsComponent, NgTemplateOutlet, NgIf, ViewTrackerComponent, ThemedSearchFormComponent, ThemedTopLevelCommunityListComponent, RecentItemListComponent, AsyncPipe, TranslateModule, NgClass, SuggestionsPopupComponent, ThemedConfigurationSearchPageComponent, PageWithSidebarComponent, HomeCoarComponent],
+  imports: [HeroBannerComponent, ThemedHomeNewsComponent, NgTemplateOutlet, NgIf, ViewTrackerComponent, ThemedSearchFormComponent, ThemedTopLevelCommunityListComponent, RecentItemListComponent, AsyncPipe, TranslateModule, NgClass, SuggestionsPopupComponent, ThemedConfigurationSearchPageComponent, PageWithSidebarComponent, HomeCoarComponent],
 })
 export class HomePageComponent extends BaseComponent {
+  
+  constructor(
+    @Inject(APP_CONFIG) protected override appConfig: AppConfig,
+    protected override route: ActivatedRoute,
+    protected router: Router
+  ) {
+    super(appConfig, route);
+  }
 
+  /**
+   * Navigate to browse page with specific category
+   * @param category The browse category to navigate to
+   */
+  navigateToBrowse(category: string): void {
+    this.router.navigate(['/browse', category]);
+  }
 }
