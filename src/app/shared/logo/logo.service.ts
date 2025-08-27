@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, startWith } from 'rxjs';
 
 /**
  * Service to handle logo switching based on current language
@@ -34,6 +34,7 @@ export class LogoService {
    */
   getCurrentLogo(): Observable<{src: string, alt: string}> {
     return this.translate.onLangChange.pipe(
+      startWith({ lang: this.translate.currentLang }),
       map(() => this.getLogoForLanguage(this.translate.currentLang))
     );
   }

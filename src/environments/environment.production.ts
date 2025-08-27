@@ -5,11 +5,11 @@ export const environment: Partial<BuildConfig> = {
 
   // Angular SSR (Server Side Rendering) settings
   ssr: {
-    enabled: true,
+    enabled: false,
     enablePerformanceProfiler: false,
     inlineCriticalCss: false,
     transferState: true,
-    replaceRestUrl: true,
+    replaceRestUrl: false,
     paths: [ '/home', '/items/', '/entities/', '/collections/', '/communities/', '/bitstream/', '/bitstreams/', '/handle/', '/reload/' ],
     enableSearchComponent: false,
     enableBrowseComponent: false,
