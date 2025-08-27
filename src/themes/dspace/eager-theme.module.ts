@@ -7,6 +7,7 @@ import { HeaderNavbarWrapperComponent } from './app/header-nav-wrapper/header-na
 import { HeroBannerComponent } from './app/hero-banner/hero-banner.component';
 import { HomePageComponent } from './app/home-page/home-page.component';
 import { HomeNewsComponent } from './app/home-page/home-news/home-news.component';
+import { TopLevelCommunityListComponent } from './app/home-page/top-level-community-list/top-level-community-list.component';
 import { NavbarComponent } from './app/navbar/navbar.component';
 
 /**
@@ -22,6 +23,7 @@ const DECLARATIONS = [
   HeroBannerComponent,
   HomePageComponent,
   HomeNewsComponent,
+  TopLevelCommunityListComponent,
   NavbarComponent,
 ];
 
