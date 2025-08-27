@@ -1,7 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ds-hero-banner',
@@ -12,8 +10,8 @@ import { Subscription } from 'rxjs';
 })
 export class HeroBannerComponent implements OnInit, OnDestroy {
   
-  // Tamil desktop hero banner images
-  tamilDesktopHeroImages = [
+  // Desktop/Laptop hero banner images
+  desktopHeroImages = [
     'assets/images/hero-banners/HERO BANNER FOR THOLKUDI - final version TAMIL.jpg',
     'assets/images/hero-banners/HERO BANNER FOR THOLKUDI - final version TAMIL2.jpg',
     'assets/images/hero-banners/HERO BANNER FOR THOLKUDI - final version TAMIL3.jpg',
@@ -21,14 +19,7 @@ export class HeroBannerComponent implements OnInit, OnDestroy {
     'assets/images/hero-banners/HERO BANNER FOR THOLKUDI - final version TAMIL5.jpg'
   ];
 
-  // English/Generic desktop hero banner images
-  englishDesktopHeroImages = [
-    'assets/images/hero-banners/hero-banner-01.jpg',
-    'assets/images/hero-banners/hero-banner-02.jpg',
-    'assets/images/hero-banners/hero-banner-03.jpg'
-  ];
-
-  // Mobile hero banner images (same for all languages)
+  // Mobile hero banner images (400x308)
   mobileHeroImages = [
     'assets/images/hero-banners/mobile-hero-banner-1.jpg',
     'assets/images/hero-banners/mobile-hero-banner-2.jpg',
@@ -37,44 +28,18 @@ export class HeroBannerComponent implements OnInit, OnDestroy {
     'assets/images/hero-banners/mobile-hero-banner-5.jpg'
   ];
 
-  desktopHeroImages: string[] = [];
   currentSlide = 0;
   autoSlideInterval: any;
   autoSlideDelay = 7000; // 7 seconds
   isMobile = false;
-  langChangeSubscription: Subscription;
-
-  constructor(private translate: TranslateService) {}
 
   ngOnInit(): void {
     this.checkScreenSize();
-    this.setHeroImagesForLanguage(this.translate.currentLang);
     this.startAutoSlide();
-    
-    // Subscribe to language changes
-    this.langChangeSubscription = this.translate.onLangChange.subscribe(event => {
-      this.setHeroImagesForLanguage(event.lang);
-      this.currentSlide = 0; // Reset to first slide on language change
-    });
   }
 
   ngOnDestroy(): void {
     this.stopAutoSlide();
-    if (this.langChangeSubscription) {
-      this.langChangeSubscription.unsubscribe();
-    }
-  }
-
-  /**
-   * Set hero images based on current language
-   */
-  setHeroImagesForLanguage(lang: string): void {
-    if (lang === 'ta') {
-      this.desktopHeroImages = this.tamilDesktopHeroImages;
-    } else {
-      // Default to English/generic banners for any other language
-      this.desktopHeroImages = this.englishDesktopHeroImages;
-    }
   }
 
   /**

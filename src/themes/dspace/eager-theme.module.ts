@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { RootModule } from '../../app/root.module';
 import { HeaderComponent } from './app/header/header.component';
 import { HeaderNavbarWrapperComponent } from './app/header-nav-wrapper/header-navbar-wrapper.component';
+import { HeroBannerComponent } from './app/hero-banner/hero-banner.component';
+import { HomePageComponent } from './app/home-page/home-page.component';
 import { HomeNewsComponent } from './app/home-page/home-news/home-news.component';
 import { NavbarComponent } from './app/navbar/navbar.component';
 
@@ -15,9 +17,11 @@ const ENTRY_COMPONENTS = [];
 
 const DECLARATIONS = [
   ...ENTRY_COMPONENTS,
-  HomeNewsComponent,
   HeaderComponent,
   HeaderNavbarWrapperComponent,
+  HeroBannerComponent,
+  HomePageComponent,
+  HomeNewsComponent,
   NavbarComponent,
 ];
 
