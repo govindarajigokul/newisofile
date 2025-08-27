@@ -25,15 +25,15 @@ import { AuthorizationDataService } from '../core/data/feature-authorization/aut
 import { FeatureID } from '../core/data/feature-authorization/feature-id';
 import { KlaroService } from '../shared/cookies/klaro.service';
 import { hasValue } from '../shared/empty.util';
+import { LogoService } from '../shared/logo/logo.service';
 
 @Component({
-  selector: 'ds-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss'],
+  selector: 'ds-base-footer',
+  styleUrls: ['footer.component.scss'],
+  templateUrl: 'footer.component.html',
   standalone: true,
   imports: [NgIf, RouterLink, AsyncPipe, DatePipe, TranslateModule],
 })
-
 export class FooterComponent implements OnInit {
   dateObj: number = Date.now();
 
@@ -48,12 +48,14 @@ export class FooterComponent implements OnInit {
   showEndUserAgreement: boolean;
   showSendFeedback$: Observable<boolean>;
   coarLdnEnabled$: Observable<boolean>;
+  currentLogo: {src: string, alt: string};
 
   constructor(
     @Optional() public cookies: KlaroService,
     protected authorizationService: AuthorizationDataService,
     protected notifyInfoService: NotifyInfoService,
     @Inject(APP_CONFIG) protected appConfig: AppConfig,
+    protected logoService: LogoService,
   ) {
   }
 
@@ -65,6 +67,14 @@ export class FooterComponent implements OnInit {
     this.showEndUserAgreement = this.appConfig.info.enableEndUserAgreement;
     this.coarLdnEnabled$ = this.appConfig.info.enableCOARNotifySupport ? this.notifyInfoService.isCoarConfigEnabled() : observableOf(false);
     this.showSendFeedback$ = this.authorizationService.isAuthorized(FeatureID.CanSendFeedback);
+
+    // Initialize current logo
+    this.currentLogo = this.logoService.getCurrentLogoSync();
+
+    // Subscribe to language changes to update logo
+    this.logoService.getCurrentLogo().subscribe(logo => {
+      this.currentLogo = logo;
+    });
   }
 
   showCookieSettings() {

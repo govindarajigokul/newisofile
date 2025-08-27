@@ -9,6 +9,8 @@ import { URLCombiner } from './url-combiner';
  */
 export class RESTURLCombiner extends URLCombiner {
   constructor(...parts: string[]) {
-    super(environment.rest.baseUrl, '/api', ...parts);
+    // Provide a fallback URL if environment.rest is not yet initialized (using demo server)
+    const baseUrl = environment.rest?.baseUrl || 'https://demo.dspace.org/server';
+    super(baseUrl, '/api', ...parts);
   }
 }

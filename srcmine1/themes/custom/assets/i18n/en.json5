@@ -1,7 +1,4 @@
 {
-  // DSpace default: "All of DSpace"
-  "menu.section.browse_global": "Browse DSpace",
-
-  // DSpace default: "DSpace Angular :: "
-  "repository.title.prefix": "DSpace :: ",
+  // Custom theme i18n overrides for English
+  // Add any text overrides here
 }

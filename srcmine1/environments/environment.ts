@@ -8,6 +8,25 @@ import { BuildConfig } from '../config/build-config.interface';
 export const environment: Partial<BuildConfig> = {
   production: false,
 
+  // REST API settings - Using DSpace demo server
+  rest: {
+    ssl: true,
+    host: 'demo.dspace.org',
+    port: 443,
+    nameSpace: '/server',
+    baseUrl: 'https://demo.dspace.org/server'
+  },
+
+  // UI settings
+  ui: {
+    ssl: false,
+    host: 'localhost',
+    port: 4000,
+    nameSpace: '/',
+    baseUrl: 'http://localhost:4000/',
+    useProxies: true
+  },
+
   // Angular SSR (Server Side Rendering) settings
   ssr: {
     enabled: false,

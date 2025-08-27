@@ -11,6 +11,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 import { RootModule } from '../../app/root.module';
+import { HeroBannerComponent } from './app/hero-banner/hero-banner.component';
+import { HomePageComponent } from './app/home-page/home-page.component';
+import { HomeNewsComponent } from './app/home-page/home-news/home-news.component';
+import { HeaderComponent } from './app/header/header.component';
+import { HeaderNavbarWrapperComponent } from './app/header-nav-wrapper/header-navbar-wrapper.component';
+import { NavbarComponent } from './app/navbar/navbar.component';
 
 const DECLARATIONS = [
 ];

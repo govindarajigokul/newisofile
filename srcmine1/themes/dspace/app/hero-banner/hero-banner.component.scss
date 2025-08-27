@@ -1,0 +1,240 @@
+:host {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 5px solid #6b2f30 !important; // Bottom border with specified color
+}
+
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 600px; // Reduced height for laptop view
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top; // Position image at top to remove bottom space
+  display: block;
+}
+
+// Navigation buttons
+.hero-prev,
+.hero-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.hero-prev {
+  left: 20px;
+}
+
+.hero-next {
+  right: 20px;
+}
+
+// Dots indicator
+.hero-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  &.active {
+    background: white;
+  }
+}
+
+// Monitor Media Queries for 1920x600 Images
+
+// Ultra-wide monitors (2560px and above)
+@media (min-width: 2560px) {
+  .hero-slider {
+    height: 600px; // Perfect height for 1920x600 images
+    max-width: 1920px; // Limit width to image width
+    margin: 0 auto; // Center the slider
+  }
+
+  .hero-image {
+    object-fit: contain; // Show full image without cropping
+    object-position: center center; // Center the image
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Large monitors (1920px to 2559px) - Standard monitor size
+@media (min-width: 1920px) and (max-width: 2559px) {
+  .hero-slider {
+    height: 600px; // Perfect height for 1920x600 images
+    width: 100%;
+  }
+
+  .hero-image {
+    object-fit: cover; // Fill the container properly
+    object-position: center center; // Center the image
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Medium monitors (1600px to 1919px) - Smaller than image width
+@media (min-width: 1600px) and (max-width: 1919px) {
+  .hero-slider {
+    height: 500px; // Proportional height for smaller width
+  }
+
+  .hero-image {
+    object-fit: cover; // Cover the container
+    object-position: center center; // Center the image
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Your monitor size (1520px to 1599px) - 1524px width
+@media (min-width: 1520px) and (max-width: 1599px) {
+  .hero-slider {
+    height: 480px; // Proportional height for 1524px width (1524/1920 * 600 = 476px)
+  }
+
+  .hero-image {
+    object-fit: cover; // Cover the container properly
+    object-position: center center; // Center the image
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Laptop screens (1200px to 1599px) - Proper scaling for laptop view
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .hero-slider {
+    height: 400px; // Fixed height for proper container
+  }
+
+  .hero-image {
+    object-fit: cover; // Cover the container to fill properly
+    object-position: center top; // Position to show top and center, prevent bottom crop
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Small laptops/tablets (769px to 1199px)
+@media (max-width: 1199px) and (min-width: 769px) {
+  .hero-slider {
+    height: 320px; // Proportional height for smaller screens
+  }
+
+  .hero-image {
+    object-fit: cover; // Cover the container to fill properly
+    object-position: center top; // Position to show top and center, prevent bottom crop
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-container {
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero-slider {
+    height: 250px; // Set a minimum height to ensure images show
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero-slide {
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero-image {
+    object-fit: cover; // Fill the container completely
+    object-position: center center; // Center the mobile image
+    width: 100%;
+    height: 100%; // Full height of container
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero-prev,
+  .hero-next {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .hero-prev {
+    left: 10px;
+  }
+
+  .hero-next {
+    right: 10px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+}

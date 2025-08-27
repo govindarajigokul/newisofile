@@ -1,33 +1,894 @@
 :host {
-  #main-site-header {
-    min-height: var(--ds-header-height);
+  // Override CSS variables to ensure golden search icon colors
+  --ds-header-icon-color: #eca43c;
+  --ds-header-icon-color-hover: #d4941f;
 
-    @include media-breakpoint-up(md) {
-      height: var(--ds-header-height);
+  // Custom header styling
+  header {
+    background-color: #fff;
+    border-bottom: 3px solid #eca43c !important; // Single golden border
+    position: relative; // Ensure mobile menu positions correctly
+
+    .container {
+      padding: 0.25rem 1rem; // Reduced padding for smaller header
     }
 
-    background-color: var(--ds-header-bg);
+    .navbar-brand img.tholkudi-logo {
+      height: 45px; // Reduced for laptop view
+      max-width: 200px; // Reduced for laptop view
+      object-fit: contain;
+    }
 
-    &-container {
-      min-height: var(--ds-header-height);
+    // Navigation buttons styling with color #2b4878
+    .nav-button {
+      background-color: #2b4878; // Blue background color
+      color: white !important;
+      text-decoration: none;
+      padding: 6px 12px; // Reduced padding for smaller buttons
+      border-radius: 16px; // Slightly smaller radius
+      font-size: 12px; // Smaller font size
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      transition: background-color 0.3s ease;
+      border: none;
+      cursor: pointer;
+
+      &:hover, &:focus {
+        background-color: #1e3456; // Darker shade for hover
+        color: white !important;
+        text-decoration: none;
+      }
+    }
+
+    // User controls wrapper styling with #229daf background
+    .user-controls-wrapper {
+      background-color: #229daf; // Teal background color
+      border-radius: 16px; // Smaller radius
+      padding: 2px 6px; // Reduced padding
+      display: flex;
+      align-items: center;
+      gap: 6px; // Smaller gap
+
+      // Style the login text to have white background (first position)
+      ::ng-deep ds-auth-nav-menu {
+        .btn, .dropdown-toggle, a {
+          background-color: white !important;
+          color: #333 !important;
+          border-radius: 12px !important; // Smaller radius
+          padding: 3px 8px !important; // Reduced padding
+          border: none !important;
+          font-size: 12px !important; // Smaller font
+          font-weight: bold !important;
+
+          &:hover, &:focus {
+            background-color: white !important;
+            color: #333 !important;
+            text-decoration: none !important;
+          }
+        }
+      }
+
+      // Style language switcher to blend with the background (last position)
+      ::ng-deep ds-lang-switch {
+        .btn, .dropdown-toggle, a {
+          background-color: transparent !important;
+          color: white !important;
+          border: none !important;
+          font-size: 12px !important; // Smaller font
+          font-weight: bold !important;
+
+          &:hover, &:focus {
+            background-color: transparent !important;
+            color: white !important;
+            text-decoration: none !important;
+          }
+        }
+      }
+    }
+
+    // Dropdown menu styling
+    .dropdown-menu {
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 8px 0;
+
+      .dropdown-item {
+        padding: 8px 16px;
+        font-weight: bold !important;
+        font-size: 14px;
+        color: #333;
+
+        &:hover, &:focus {
+          background-color: #f8f9fa;
+          color: #2b4878; // Updated to match new button color
+        }
+      }
+    }
+
+    // Ensure proper spacing between elements
+    .me-2 {
+      margin-right: 0.5rem !important;
+    }
+
+    .me-3 {
+      margin-right: 1rem !important;
+    }
+
+    // Mobile language switch (left of hamburger)
+    .mobile-lang-switch {
+      display: flex !important;
+      align-items: center !important;
+      min-width: 60px !important;
+      min-height: 30px !important;
+
+      // Target all possible language switch elements
+      ::ng-deep ds-lang-switch,
+      ::ng-deep .dropdown,
+      ::ng-deep .btn-group {
+        .btn,
+        .dropdown-toggle,
+        button,
+        a {
+          background: #229daf !important;
+          background-color: #229daf !important;
+          color: #ffffff !important;
+          border: 1px solid #229daf !important;
+          border-radius: 20px !important;
+          padding: 3px 12px !important;
+          font-weight: bold !important;
+          font-size: 14px !important;
+          display: inline-block !important;
+          text-decoration: none !important;
+          min-width: 50px !important;
+          text-align: center !important;
+          box-shadow: none !important;
+          outline: none !important;
+
+          &:hover,
+          &:focus,
+          &:active,
+          &.active,
+          &.show {
+            background: #1a7a87 !important;
+            background-color: #1a7a87 !important;
+            color: #ffffff !important;
+            border-color: #1a7a87 !important;
+            box-shadow: none !important;
+          }
+
+          // Hide original text and show custom text
+          text-indent: -9999px !important;
+          overflow: hidden !important;
+          position: relative !important;
+
+          &::before {
+            content: "Eng/த" !important;
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            text-indent: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: #ffffff !important;
+            font-size: 14px !important;
+            font-weight: bold !important;
+            z-index: 999 !important;
+          }
+
+          // Hide all child elements
+          * {
+            visibility: hidden !important;
+          }
+        }
+      }
+
+      ::ng-deep .dropdown-menu {
+        border-radius: 8px;
+        margin-top: 0.25rem;
+      }
+
+      // Ensure the component itself is visible
+      ::ng-deep ds-lang-switch {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
+
+      // Force visibility on mobile
+      @media (max-width: 767.98px) {
+        display: flex !important;
+        visibility: visible !important;
+
+        ::ng-deep ds-lang-switch {
+          display: block !important;
+          visibility: visible !important;
+        }
+      }
+    }
+
+    // Mobile hamburger menu styles
+    .navbar-toggler {
+      border: none;
+      padding: 4px 8px;
+      background-color: #2b4878;
+      border-radius: 4px;
+
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 0.2rem rgba(43, 72, 120, 0.25);
+      }
+    }
+
+    // Mobile navigation collapse
+    .mobile-nav-collapse {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+
+      &.show {
+        max-height: 500px;
+      }
+    }
+
+    .mobile-nav-content {
+      padding: 1rem;
+    }
+
+    .mobile-nav-section {
+      margin-bottom: 1.5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .mobile-nav-link {
+      display: block !important;
+      color: #2b4878 !important;
+      font-weight: 600 !important;
+      font-size: 16px !important;
+      padding: 0.75rem 1rem !important;
+      border-bottom: 1px solid #eee !important;
+      text-decoration: none !important;
+      background: transparent !important;
+      border-radius: 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
+      text-align: left !important;
+      transition: all 0.3s ease !important;
+
+      &:hover, &:focus, &:active {
+        background-color: #f8f9fa !important;
+        color: #1a2d4a !important;
+        text-decoration: none !important;
+      }
+
+      &:last-child {
+        border-bottom: none !important;
+      }
+    }
+
+    // Mobile dropdown section styling
+    .mobile-dropdown-section {
+      margin-bottom: 0.5rem;
+
+      .mobile-dropdown-header {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+        background: transparent !important;
+        border: none !important;
+        color: #2b4878 !important;
+        font-weight: 700 !important;
+        font-size: 18px !important;
+        padding: 1rem !important;
+        text-align: left !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+
+        &:hover, &:focus {
+          color: #1a2d4a !important;
+        }
+
+        .dropdown-arrow {
+          transition: transform 0.3s ease;
+          font-size: 14px;
+          color: #eca43c;
+
+          &.rotated {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      .mobile-dropdown-items {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+
+        &.show {
+          max-height: 400px; // Adjust based on content
+        }
+
+        .mobile-sub-link {
+          padding-left: 2rem !important; // Extra indentation for sub-items
+          font-size: 14px !important;
+          border-bottom: 1px solid #ddd !important;
+
+          &:hover, &:focus {
+            background-color: #e9ecef !important;
+            padding-left: 2.2rem !important; // Slight animation on hover
+          }
+        }
+      }
+    }
+
+    // Mobile auth navigation wrapper - style login EXACTLY like nav links
+    .mobile-auth-nav-wrapper {
+      .mobile-auth-nav {
+        // Force all auth menu elements to look like navigation links
+        ::ng-deep .btn,
+        ::ng-deep .nav-link,
+        ::ng-deep a,
+        ::ng-deep button,
+        ::ng-deep .dropdown-toggle {
+          display: block !important;
+          color: #2b4878 !important;
+          font-weight: 600 !important;
+          font-size: 16px !important;
+          padding: 0.75rem 1rem !important;
+          border-bottom: 1px solid #eee !important;
+          text-decoration: none !important;
+          background: transparent !important;
+          border: none !important;
+          border-bottom: 1px solid #eee !important;
+          border-radius: 0 !important;
+          width: 100% !important;
+          text-align: left !important;
+          transition: all 0.3s ease !important;
+          margin: 0 !important;
+          box-shadow: none !important;
+
+          &:hover, &:focus, &:active {
+            background-color: #f8f9fa !important;
+            color: #1a2d4a !important;
+            border-color: #eee !important;
+            box-shadow: none !important;
+          }
+
+          &::after {
+            display: none !important; // Hide dropdown arrow
+          }
+        }
+      }
+    }
+
+    // Other mobile controls styling
+    .mobile-other-controls {
+      border-top: 1px solid #eee;
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+
+    // Mobile controls container
+    .d-md-none.d-flex.align-items-center {
+      gap: 0.5rem !important;
+
+      .mobile-lang-switch {
+        flex-shrink: 0 !important; // Prevent shrinking
+        display: flex !important;
+        align-items: center !important;
+      }
+
+      .navbar-toggler {
+        flex-shrink: 0 !important; // Prevent shrinking
+      }
+    }
+
+    // Responsive adjustments
+    @media (max-width: 768px) {
+      .d-flex.align-items-center {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .nav-button {
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+
+      // Mobile logo size adjustments
+      .navbar-brand img.tholkudi-logo {
+        height: 55px; // Slightly smaller on mobile but still larger than before
+        max-width: 220px;
+      }
+    }
+
+    // Tablet adjustments
+    @media (min-width: 769px) and (max-width: 991.98px) {
+      .navbar-brand img.tholkudi-logo {
+        height: 65px;
+        max-width: 260px;
+      }
+    }
+
+    // Large desktop adjustments
+    @media (min-width: 1200px) {
+      .navbar-brand img.tholkudi-logo {
+        height: 80px; // Even larger on big screens
+        max-width: 320px;
+      }
+    }
+
+    // Specific media queries to ensure search icon visibility across all screen sizes
+    @media (min-width: 768px) {
+      // Tablet and above - ensure desktop search is visible
+      .search-navbar-wrapper {
+        ::ng-deep ds-search-navbar {
+          display: flex !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+
+          .search-toggle-btn,
+          .submit-icon,
+          .btn {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+          }
+        }
+      }
+    }
+
+    @media (min-width: 992px) {
+      // Laptop screens - force search visibility
+      .search-navbar-wrapper {
+        ::ng-deep ds-search-navbar {
+          display: flex !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+
+          * {
+            visibility: visible !important;
+            opacity: 1 !important;
+          }
+
+          .search-toggle-btn,
+          .submit-icon,
+          .btn {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            background: transparent !important;
+            color: #eca43c !important;
+
+            &:hover {
+              visibility: visible !important;
+              opacity: 1 !important;
+            }
+          }
+        }
+      }
+    }
+
+    @media (min-width: 1200px) {
+      // Large desktop screens - force search visibility
+      .search-navbar-wrapper {
+        ::ng-deep ds-search-navbar {
+          display: flex !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+
+          .search-toggle-btn,
+          .submit-icon,
+          .btn {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            color: #eca43c !important;
+            font-size: 20px !important;
+          }
+        }
+      }
+    }
+
+    @media (min-width: 1400px) {
+      // Extra large screens - force search visibility
+      .search-navbar-wrapper {
+        ::ng-deep ds-search-navbar {
+          display: flex !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+
+          .search-toggle-btn,
+          .submit-icon,
+          .btn {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            color: #eca43c !important;
+            font-size: 22px !important;
+          }
+        }
+      }
+    }
+
+    // Search navbar styling (Desktop)
+    .search-navbar-wrapper {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+
+      ::ng-deep ds-search-navbar {
+        display: flex !important;
+        align-items: center;
+        position: relative;
+
+        .d-inline-block.position-relative {
+          position: relative;
+          z-index: 1050;
+        }
+
+        .search-toggle-btn,
+        .submit-icon,
+        .btn {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          background: transparent !important;
+          border: none !important;
+          color: #eca43c !important;
+          font-size: 18px !important;
+          padding: 8px 12px !important;
+          border-radius: 4px !important;
+          transition: all 0.3s ease !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          cursor: pointer !important;
+
+          &:hover, &:focus {
+            background-color: rgba(236, 164, 60, 0.1) !important;
+            color: #d4941f !important;
+            transform: scale(1.05);
+          }
+
+          i, .fa, .fas, em {
+            font-size: 18px !important;
+            color: #eca43c !important;
+          }
+
+          &:hover i, &:hover .fa, &:hover .fas, &:hover em,
+          &:focus i, &:focus .fa, &:focus .fas, &:focus em {
+            color: #d4941f !important;
+          }
+        }
+
+        // Desktop search input styling when expanded
+        input[type="text"] {
+          position: absolute !important;
+          top: calc(100% + 8px) !important;
+          right: 0 !important;
+          left: auto !important;
+          width: 300px !important;
+          background-color: #fff !important;
+          border: 2px solid #eca43c !important;
+          border-radius: 8px !important;
+          box-shadow: 0 4px 12px rgba(236, 164, 60, 0.2) !important;
+          z-index: 1051 !important;
+          padding: 10px 16px !important;
+          font-size: 14px !important;
+          
+          &::placeholder {
+            color: #666 !important;
+          }
+          
+          &:focus {
+            outline: none !important;
+            border-color: #d4941f !important;
+            box-shadow: 0 4px 12px rgba(236, 164, 60, 0.3) !important;
+          }
+        }
+      }
+    }
+
+    // Mobile search icon styling (for header search icon)
+    .mobile-search-icon {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      position: relative;
+
+      ::ng-deep ds-search-navbar {
+        position: relative;
+        
+        .d-inline-block.position-relative {
+          position: relative;
+          z-index: 1050;
+        }
+        
+        .submit-icon,
+        .btn {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          background: transparent !important;
+          border: none !important;
+          color: #eca43c !important;
+          font-size: 16px !important;
+          padding: 8px 10px !important;
+          border-radius: 20px !important;
+          transition: all 0.3s ease !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          min-width: 36px;
+          min-height: 36px;
+          box-shadow: none !important;
+
+          &:hover, &:focus {
+            background: rgba(236, 164, 60, 0.1) !important;
+            color: #d4941f !important;
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(236, 164, 60, 0.3) !important;
+          }
+
+          i, .fa, .fas, em {
+            font-size: 16px !important;
+            color: #eca43c !important;
+          }
+
+          &:hover i, &:hover .fa, &:hover .fas, &:hover em,
+          &:focus i, &:focus .fa, &:focus .fas, &:focus em {
+            color: #d4941f !important;
+          }
+        }
+
+        // Search input styling when expanded
+        input[type="text"] {
+          position: absolute !important;
+          top: calc(100% + 8px) !important;
+          right: 0 !important;
+          left: auto !important;
+          width: 280px !important;
+          background-color: #fff !important;
+          border: 2px solid #eca43c !important;
+          border-radius: 20px !important;
+          box-shadow: 0 4px 12px rgba(236, 164, 60, 0.2) !important;
+          z-index: 1051 !important;
+          padding: 8px 16px !important;
+          font-size: 14px !important;
+          
+          &::placeholder {
+            color: #666 !important;
+          }
+          
+          &:focus {
+            outline: none !important;
+            border-color: #d4941f !important;
+            box-shadow: 0 4px 12px rgba(236, 164, 60, 0.3) !important;
+          }
+        }
+      }
+    }
+
+    // Mobile search styling (for collapsed menu if needed)
+    .mobile-search-wrapper {
+      margin: 0.5rem 0;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+
+      ::ng-deep ds-search-navbar {
+        .search-toggle-btn,
+        .btn {
+          background: transparent;
+          border: none;
+          color: #2b4878;
+          font-size: 16px;
+          padding: 8px 0;
+          width: 100%;
+          text-align: left;
+          border-radius: 0;
+
+          &:hover {
+            background-color: #f8f9fa;
+            color: #1a2d4a;
+          }
+        }
+      }
+    }
+
+    // CRITICAL OVERRIDE: Force search icon visibility at 768px+ with maximum specificity
+    :host header .container .d-flex .navbar .d-none.d-md-flex .search-navbar-wrapper,
+    :host header .d-none.d-md-flex .search-navbar-wrapper,
+    .search-navbar-wrapper {
+      ::ng-deep ds-search-navbar {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+
+        .d-inline-block,
+        .position-relative {
+          display: flex !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+
+        form {
+          display: flex !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+
+        .search-toggle-btn,
+        .submit-icon,
+        .btn,
+        button {
+          display: flex !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          color: #eca43c !important;
+          background: transparent !important;
+          border: none !important;
+
+          &:hover,
+          &:focus,
+          &:active,
+          &.active {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            color: #d4941f !important;
+          }
+
+          i, .fa, .fas, em {
+            display: inline-block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            color: inherit !important;
+          }
+        }
+      }
+    }
+
+    // Additional ultra-specific override for problematic 768px+ screens
+    @media (min-width: 768px) {
+      :host header nav .d-none.d-md-flex .search-navbar-wrapper ::ng-deep ds-search-navbar,
+      :host .search-navbar-wrapper ::ng-deep ds-search-navbar,
+      .d-none.d-md-flex .search-navbar-wrapper ::ng-deep ds-search-navbar {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+
+        * {
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+
+        .search-toggle-btn,
+        .submit-icon,
+        .btn,
+        button,
+        .btn-link,
+        .btn-link-inline {
+          display: flex !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          color: #eca43c !important;
+          background: transparent !important;
+          border: none !important;
+          outline: none !important;
+
+          &::before,
+          &::after {
+            display: none !important;
+          }
+        }
+      }
+    }
+
+    // NUCLEAR APPROACH: Maximum specificity CSS to force search icon visibility
+    // Target the exact DOM structure based on the HTML we found
+    header .container .d-flex .navbar .d-none.d-md-flex .search-navbar-wrapper ds-search-navbar .d-inline-block.position-relative form.d-flex button.submit-icon.btn.btn-link.btn-link-inline,
+    header .d-none.d-md-flex .search-navbar-wrapper ds-search-navbar button.submit-icon.btn.btn-link.btn-link-inline,
+    .search-navbar-wrapper ds-search-navbar button.submit-icon.btn.btn-link.btn-link-inline,
+    ds-search-navbar button.submit-icon.btn.btn-link.btn-link-inline,
+    button.submit-icon.btn.btn-link.btn-link-inline[data-test="header-search-icon"] {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      position: sticky !important;
+      background: transparent !important;
+      border: none !important;
+      padding: 8px !important;
+      cursor: pointer !important;
+      color: #eca43c !important;
+      outline: none !important;
+      box-shadow: none !important;
+      
+      // Override all possible pseudo-states
+      &:hover, &:focus, &:active, &.active, &:visited, &:link, &:any-link {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color: #d4941f !important;
+        background: rgba(236, 164, 60, 0.1) !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }
+
+      // Force icon visibility with all possible selectors
+      em, i, .fa, .fas, .far, .fab, span, .fa-search, .fa-lg, .fa-fw {
+        display: inline-block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color: inherit !important;
+        font-size: 18px !important;
+      }
+    }
+
+    // Also target any nested components that might be interferring
+    ::ng-deep {
+      .search-navbar-wrapper,
+      .d-none.d-md-flex .search-navbar-wrapper {
+        ds-search-navbar {
+          display: flex !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+
+          .d-inline-block.position-relative {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+
+            form.d-flex {
+              display: flex !important;
+              visibility: visible !important;
+              opacity: 1 !important;
+
+              button.submit-icon.btn.btn-link.btn-link-inline {
+                display: flex !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                color: #eca43c !important;
+                background: transparent !important;
+                border: none !important;
+                padding: 8px !important;
+                
+                &:hover, &:focus, &:active {
+                  display: flex !important;
+                  visibility: visible !important;
+                  opacity: 1 !important;
+                  color: #d4941f !important;
+                }
+
+                em.fas.fa-search.fa-lg.fa-fw {
+                  display: inline-block !important;
+                  visibility: visible !important;
+                  opacity: 1 !important;
+                  color: inherit !important;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
-
-  img#header-logo {
-    height: var(--ds-header-logo-height);
-  }
-
-  button#navbar-toggler {
-    color: var(--ds-header-icon-color);
-
-    &:hover, &:focus {
-      color: var(--ds-header-icon-color-hover);
-    }
-  }
-
 }
-.navbar-nav .nav-item {
-  display: flex;
-  align-items: center;
-}
-

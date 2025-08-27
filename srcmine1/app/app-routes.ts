@@ -59,23 +59,7 @@ export const APP_ROUTES: Route[] = [
         pathMatch: 'full',
         canActivate: [reloadGuard],
       },
-      
-{
-  path: 'about-us',
-  loadComponent: () =>
-    import('./info/about/themed-about.component')
-      .then(m => m.ThemedAboutComponent),
-  canActivate: [endUserAgreementCurrentUserGuard],
-},
-{
-  path: 'tribal_lg',
-  loadComponent: () =>
-    import('./info/tribal_lg/themed-tribal_lg.component')
-      .then(m => m.ThemedTribalLgComponent),
-  canActivate: [endUserAgreementCurrentUserGuard],
-},
-
-{
+      {
         path: 'home',
         loadChildren: () => import('./home-page/home-page-routes')
           .then((m) => m.ROUTES),
@@ -272,6 +256,18 @@ export const APP_ROUTES: Route[] = [
         loadChildren: () => import('./subscriptions-page/subscriptions-page-routes')
           .then((m) => m.ROUTES),
         canActivate: [authenticatedGuard],
+      },
+      // Custom Tholkudi routes
+      {
+        path: 'about-us',
+        redirectTo: '/info/about',
+        pathMatch: 'full',
+      },
+      {
+        path: 'tribal_lg',
+        loadComponent: () => import('./tribal-languages/themed-tribal-languages.component').then(m => m.ThemedTribalLanguagesComponent),
+        canActivate: [endUserAgreementCurrentUserGuard],
+        data: { title: 'Tribal Languages', breadcrumbKey: 'tribal.languages' },
       },
       { path: '**', pathMatch: 'full', component: ThemedPageNotFoundComponent },
     ],

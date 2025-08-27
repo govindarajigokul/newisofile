@@ -3,87 +3,71 @@
     <div class="row gy-4">
       <!-- Column 1: Logo -->
       <div class="col-12 col-md-3 d-flex align-items-center justify-content-center justify-content-md-start">
-        <a class="navbar-brand"
-           routerLink="/home"
-           [attr.aria-label]="'home.title' | translate">
-          <img
-            src="assets/images/tholkudi-logo-english.png"
-            class="footer-logo"
-            [attr.alt]="'menu.header.image.logo' | translate" />
+        <a class="navbar-brand" routerLink="/home" aria-label="Home">
+          <img [src]="currentLogo.src" [alt]="currentLogo.alt" class="footer-logo" />
         </a>
       </div>
 
       <!-- Column 2: Contact Us -->
       <div class="col-12 col-md-3">
-        <h5 class="footer-heading">{{ 'footer.heading.contact' | translate }}</h5>
+        <h5 class="footer-heading">Contact Us</h5>
         <address class="mb-0 small">
-          {{ 'footer.address.line1' | translate }}<br />
-          {{ 'footer.address.line2' | translate }}<br />
-          {{ 'footer.address.line3' | translate }}<br />
-          {{ 'footer.address.phone' | translate }}<br />
-          <a href="mailto:dir.dtw@tn.gov.in"
-             [attr.aria-label]="'footer.address.emailLabel' | translate">
-            {{ 'footer.address.emailLabel' | translate }}
-          </a>
+          The Directorate of Tribal Welfare,<br />
+          1st Floor, Ezhilagam Annex Building,<br />
+          Chepauk, Chennai 600 005<br />
+          Phone: 044 - 28516689<br />
+          Email: <a href="mailto:dir.dtw@tn.gov.in" aria-label="Email the department">dir [dot] dtw [at] tn [dot] gov [dot] in</a>
         </address>
       </div>
 
       <!-- Column 3: More Info -->
       <div class="col-12 col-md-3">
-        <h5 class="footer-heading">{{ 'footer.heading.moreInfo' | translate }}</h5>
+        <h5 class="footer-heading">More Info</h5>
         <ul class="list-unstyled">
-          <li *ngIf="showHelp">
-            <a routerLink="/info/help">{{ 'footer.moreInfo.help' | translate }}</a>
-          </li>
-          <li>
-            <a href="#" (click)="showCookieSettings(); $event.preventDefault()">
-              {{ 'footer.moreInfo.cookieSettings' | translate }}
-            </a>
-          </li>
-          <li *ngIf="showPrivacyPolicy">
-            <a routerLink="/info/privacy">{{ 'footer.moreInfo.privacyPolicy' | translate }}</a>
-          </li>
-          <li *ngIf="showEndUserAgreement">
-            <a routerLink="/info/end-user-agreement">{{ 'footer.moreInfo.endUserAgreement' | translate }}</a>
-          </li>
-          <li *ngIf="showSendFeedback$ | async">
-            <a routerLink="/info/feedback">{{ 'footer.moreInfo.feedback' | translate }}</a>
-          </li>
+          <li *ngIf="showHelp"><a routerLink="info/help">Help</a></li>
+          <li><a href="#" (click)="showCookieSettings(); $event.preventDefault()">Cookie Settings</a></li>
+          <li *ngIf="showPrivacyPolicy"><a routerLink="info/privacy">Privacy Policy</a></li>
+          <li *ngIf="showEndUserAgreement"><a routerLink="info/end-user-agreement">End User Agreement</a></li>
+          <li *ngIf="showSendFeedback$ | async"><a routerLink="info/feedback">Feedback</a></li>
         </ul>
       </div>
 
       <!-- Column 4: Useful Links -->
       <div class="col-12 col-md-3">
-        <h5 class="footer-heading">{{ 'footer.heading.usefulLinks' | translate }}</h5>
+        <h5 class="footer-heading">Useful Links</h5>
         <ul class="list-unstyled">
-          <li>
-            <a href="https://tribal.nic.in" target="_blank" rel="noopener">
-              {{ 'footer.links.link1' | translate }}
-            </a>
-          </li>
-          <li>
-            <a href="https://www.tntribalwelfare.tn.gov.in/" target="_blank" rel="noopener">
-              {{ 'footer.links.link2' | translate }}
-            </a>
-          </li>
-          <li>
-            <a href="https://tntrc.org.in/" target="_blank" rel="noopener">
-              {{ 'footer.links.link3' | translate }}
-            </a>
-          </li>
-          <li *ngIf="coarLdnEnabled$ | async">
-            <a routerLink="/info/coar-notify-support">
-              {{ 'footer.links.coarNotify' | translate }}
+          <li><a href="https://tribal.nic.in" target="_blank">Ministry of Tribal Affairs</a></li>
+          <li><a href="https://www.tntribalwelfare.tn.gov.in/" target="_blank">TN Tribal Welfare Department</a></li>
+          <li><a href="https://tntrc.org.in/" target="_blank">Tribal Research Centre, Tamil Nadu</a></li>
+          <li *ngIf="coarLdnEnabled$ | async" class="notify-enabled">
+            <a routerLink="info/coar-notify-support" class="coar-notify-support-route">
+              <img class="n-coar me-1" src="assets/images/coar-logo.png" alt="COAR Notify" style="height: 16px;" 
+                   onerror="this.style.display='none'">
+              {{ 'footer.link.coar-notify-support' | translate }}
             </a>
           </li>
         </ul>
+
+        <!-- Social Media Icons -->
+        <div class="social-media-icons mt-3">
+          <a href="#" aria-label="Facebook" class="social-icon">
+            <img src="assets/tholkudi-assets/social-media-icons/black_facebook.svg" alt="Facebook" />
+          </a>
+          <a href="#" aria-label="X (Twitter)" class="social-icon">
+            <img src="assets/tholkudi-assets/social-media-icons/black_x.svg" alt="X (Twitter)" />
+          </a>
+          <a href="#" aria-label="YouTube" class="social-icon">
+            <img src="assets/tholkudi-assets/social-media-icons/black_youtube.svg" alt="YouTube" />
+          </a>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Bottom Footer -->
   <div class="bottom-footer text-center py-2 mt-3">
-    <small>{{ 'footer.copyright' | translate }}</small>
+    <small>&copy; Tribal Welfare Department, Government of Tamil Nadu. All rights reserved.</small>
   </div>
 </footer>
+
 

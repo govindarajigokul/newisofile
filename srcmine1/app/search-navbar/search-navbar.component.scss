@@ -8,15 +8,93 @@ input[type="text"] {
   }
 }
 
+// ULTIMATE OVERRIDE with all possible selectors and pseudo-states
+button.submit-icon.btn.btn-link.btn-link-inline,
+.submit-icon.btn.btn-link.btn-link-inline,
+button.submit-icon,
+.submit-icon {
+  cursor: pointer !important;
+  position: sticky !important;
+  top: 0 !important;
+  border: 0 !important;
+  // Force visibility at all screen sizes with every possible CSS property
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  padding: 8px !important;
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+
+  // Use CSS variables for color consistency
+  color: var(--ds-header-icon-color) !important;
+
+  &:hover, &:focus, &:active, &.active, &:visited, &:link {
+    color: var(--ds-header-icon-color-hover) !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: rgba(236, 164, 60, 0.1) !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  // Ensure icon is always visible with all possible icon selectors
+  i, .fa, .fas, .far, .fab, em, span {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: inherit !important;
+  }
+}
+
+// Fallback with lower specificity
 .submit-icon {
   cursor: pointer;
   position: sticky;
   top: 0;
   border: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 
   color: var(--ds-header-icon-color);
   &:hover, &:focus {
     color: var(--ds-header-icon-color-hover);
+  }
+
+  i, .fa, .fas, em {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+// Force visibility at all breakpoints with maximum specificity
+@media screen and (min-width: 768px) {
+  button.submit-icon.btn.btn-link.btn-link-inline {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: var(--ds-header-icon-color) !important;
+
+    &:hover, &:focus, &:active {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      color: var(--ds-header-icon-color-hover) !important;
+    }
+
+    i, .fa, .fas, em {
+      display: inline-block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      color: inherit !important;
+    }
   }
 }
 
@@ -25,6 +103,5 @@ input[type="text"] {
     max-width: 250px !important;
     width: 40vw !important;
   }
-
 }
 

@@ -1,0 +1,28 @@
+<div class="hero-container">
+  <div class="hero-slider">
+    <div class="hero-slide"
+         *ngFor="let image of heroImages; let i = index"
+         [class.active]="i === currentSlide">
+      <img [src]="image"
+           [alt]="'Hero Banner ' + (i + 1)"
+           class="hero-image">
+    </div>
+
+    <!-- Navigation Controls -->
+    <button class="hero-prev" (click)="prevSlide()" aria-label="Previous slide">
+      &#8249;
+    </button>
+    <button class="hero-next" (click)="nextSlide()" aria-label="Next slide">
+      &#8250;
+    </button>
+
+    <!-- Dots Indicator -->
+    <div class="hero-dots">
+      <span *ngFor="let image of heroImages; let i = index"
+            class="dot"
+            [class.active]="i === currentSlide"
+            (click)="goToSlide(i)">
+      </span>
+    </div>
+  </div>
+</div>

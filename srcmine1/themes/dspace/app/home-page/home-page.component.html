@@ -1,0 +1,84 @@
+<!-- Hero Banner Section -->
+<ds-hero-banner></ds-hero-banner>
+
+<!-- Top border: Under header, top of carousel -->
+<div class="top-border"></div>
+
+<!-- Home News Component -->
+<ds-home-news></ds-home-news>
+
+<!-- Bottom border: Under carousel -->
+<div class="bottom-border"></div>
+
+<!-- Main Background Section (between carousel and footer) -->
+<div class="main-background-section">
+  <!-- Browse Categories Section -->
+  <section class="browse-categories-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="browse-categories">
+            <a (click)="navigateToBrowse('author')" class="browse-item">
+              <img src="assets/tholkudi-assets/category-icons/browse-author.png" [alt]="'browse.comcol.by.author' | translate" />
+              <span>{{ 'browse.comcol.by.author' | translate }}</span>
+            </a>
+            <a (click)="navigateToBrowse('title')" class="browse-item">
+              <img src="assets/tholkudi-assets/category-icons/browse-title.png" [alt]="'browse.comcol.by.title' | translate" />
+              <span>{{ 'browse.comcol.by.title' | translate }}</span>
+            </a>
+            <a (click)="navigateToBrowse('subject')" class="browse-item">
+              <img src="assets/tholkudi-assets/category-icons/browse-subject.png" [alt]="'browse.comcol.by.subject' | translate" />
+              <span>{{ 'browse.comcol.by.subject' | translate }}</span>
+            </a>
+            <a (click)="navigateToBrowse('language')" class="browse-item">
+              <img src="assets/tholkudi-assets/category-icons/browse-language.png" [alt]="'browse.comcol.by.language' | translate" />
+              <span>{{ 'browse.comcol.by.language' | translate }}</span>
+            </a>
+            <a (click)="navigateToBrowse('media')" class="browse-item">
+              <img src="assets/tholkudi-assets/category-icons/browse-media.png" [alt]="'browse.comcol.by.media' | translate" />
+              <span>{{ 'browse.comcol.by.media' | translate }}</span>
+            </a>
+            <a (click)="navigateToBrowse('linguistictype')" class="browse-item">
+              <img src="assets/tholkudi-assets/category-icons/browse-linguistic.png" [alt]="'browse.comcol.by.linguistictype' | translate" />
+              <span>{{ 'browse.comcol.by.linguistictype' | translate }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ds-configuration-search-page *ngIf="showDiscoverFilters"
+                                [sideBarWidth]="3"
+                                [showViewModes]="false"
+                                [searchEnabled]="false"
+                                [inPlaceSearch]="false"
+                                [showScopeSelector]="false">
+    <ng-container searchContentTop *ngTemplateOutlet="homeContent"></ng-container>
+  </ds-configuration-search-page>
+
+  <div *ngIf="!showDiscoverFilters" class="container">
+    <ng-container *ngTemplateOutlet="homeContent"></ng-container>
+  </div>
+
+  <!-- Suggestions Popup -->
+  <ds-suggestions-popup></ds-suggestions-popup>
+</div>
+<!-- End of main background section -->
+
+<!-- Home Content Template -->
+<ng-template #homeContent>
+  <ng-container *ngIf="(site$ | async) as site">
+    <ds-view-tracker [object]="site"></ds-view-tracker>
+  </ng-container>
+
+  <!-- Search Form -->
+  <ds-search-form [inPlaceSearch]="false"
+                  [searchPlaceholder]="'home.search-form.placeholder' | translate">
+  </ds-search-form>
+
+  <!-- Top Level Communities (Tribal Languages Section) -->
+  <ds-top-level-community-list></ds-top-level-community-list>
+
+  <!-- Recent Submissions section removed as requested -->
+</ng-template>

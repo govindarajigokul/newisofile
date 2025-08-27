@@ -3,6 +3,23 @@
 // imports the base global style
 @import '../../../styles/_global-styles.scss';
 
+
+// Ensure hero banner sits flush at top
+ds-hero-banner {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+.hero-container,
+.hero-slider {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
 .facet-filter, .setting-option, .advanced-search {
   background-color: var(--bs-light);
   border-radius: var(--bs-border-radius);

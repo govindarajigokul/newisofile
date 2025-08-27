@@ -1,0 +1,23 @@
+<ng-container *ngVar="(communitiesRD$ | async) as communitiesRD">
+  <div *ngIf="communitiesRD?.hasSucceeded ">
+    <div class="tribal-archive-container">
+      <h3 class="tribal-archive-title">
+        {{'home.top-level-communities.head' | translate}}
+      </h3>
+    </div>
+
+    <!-- Community Buttons Section -->
+    <div class="community-buttons-section">
+      <div class="community-buttons-container">
+        <button
+          *ngFor="let community of communitiesRD.payload.page"
+          class="community-btn"
+          (click)="navigateToCommunity(community)"
+          [attr.aria-label]="'Browse ' + community.name + ' content'">
+          <span class="community-name">{{ community.name }}</span>
+        </button>
+      </div>
+    </div>
+</div>
+<ds-error *ngIf="communitiesRD?.hasFailed " message="{{'error.top-level-communities' | translate}}"></ds-error>
+<ds-loading *ngIf="communitiesRD?.isLoading " message="{{'loading.top-level-communities' | translate}}"></ds-loading></ng-container>
