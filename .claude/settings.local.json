@@ -15,7 +15,8 @@
       "Read(D:\\phasetwo\\src\\themes\\dspace\\app\\shared\\search-form/**)",
       "Read(D:\\phasetwo\\src\\themes\\dspace/**)",
       "Read(D:\\phasetwo\\src\\themes/**)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(rm:*)"
     ],
     "deny": [],
     "ask": []
