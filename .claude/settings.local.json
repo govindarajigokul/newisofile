@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(D:\\phasetwo/**)",
+      "Bash(dir:*)",
+      "Read(D:\\phasetwo\\src/**)",
+      "Read(D:\\phasetwo\\src/**)",
+      "Read(D:\\phasetwo\\src\\themes\\dspace\\app\\home-page/**)",
+      "Read(D:\\phasetwo\\src\\app\\search-navbar/**)",
+      "Read(D:\\phasetwo\\src\\app\\shared\\search-form/**)",
+      "Read(D:\\phasetwo\\src\\app\\shared\\search-form/**)",
+      "Read(D:\\phasetwo\\src\\themes/**)",
+      "Read(D:\\phasetwo\\src\\themes\\dspace\\app\\shared\\search-form/**)",
+      "Read(D:\\phasetwo\\src\\themes\\dspace\\app\\shared\\search-form/**)",
+      "Read(D:\\phasetwo\\src\\themes\\dspace\\app\\shared\\search-form/**)",
+      "Read(D:\\phasetwo\\src\\themes\\dspace/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
